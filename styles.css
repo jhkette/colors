@@ -1,7 +1,33 @@
+html{
+    font-size: 62.5%;
+}
 body{
     font-family: 'Roboto';
 }
 
 li{
     font-size: 25px;
+    margin-bottom: .75rem;
+    list-style: none;
+
+}
+
+.box{
+    padding: 1rem;
+    height: .5rem;
+    margin-left: 3rem;
+}
+
+form{
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    width: 40rem;
+    justify-content: space-between;
 }

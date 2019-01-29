@@ -31,10 +31,15 @@ window.onload = function() {
 
 
             return `
+            <div class = "flex">
       <li>
         <span class="name" style= "color:${styles}">${cityName}: ${styles},</span>
 
+
+
       </li>
+      <span class="box" style= "background-color:${styles}"> </span>
+      </div>
     `;
         }).join('');
         suggestions.innerHTML = html;
@@ -53,6 +58,7 @@ window.onload = function() {
 
     searchInput.addEventListener('change', displayMatches);
     searchInput.addEventListener('keyup', displayMatches);
+
     searchInput.addEventListener('blur', function(e){
         console.log('clear');
         if(searchInput.value == ''){
