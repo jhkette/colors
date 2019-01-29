@@ -1,38 +1,56 @@
-window.onload = start;
+window.onload = function(){
+/*use display mtaches from javascript lessons  */
 
-function start() {
-    const colors =[];
+
+    const cities = [];
+
     fetch("./data.JSON")
         .then(res => res.json())
-        .then(data => colors.push(...data));
+        .then(colors => cities.push(...colors));
 
-    processData(colors)
-}
 
-function processData(colors){
-console.log(colors);
-}
+
+// function processData(data) {
+//     console.log(data);
+// }
 
 // use container width to generate colours
 // var screenWidth = container.offsetWidth;  // get container width
 
-
-function hexToRgb(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
+function findMatches(wordToMatch, cities) {
+  return cities.filter(place => {
+    // here we need to figure out if the city or state matches what was searched
+    const regex = new RegExp(wordToMatch, 'gi');
+    return place.color.match(regex)
+  });
 }
 
-function randomVector(){
-    let x = Math.floor(Math.random() * 256);
-    let y = Math.floor(Math.random() * 256);
-    let z = Math.floor(Math.random() * 256);
-
-    let vector = [x,y,z];
-    console.log(vector) ;
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-randomVector();
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray.map(place => {
+    const regex = new RegExp(this.value, 'gi');
+    const cityName = place.color.replace(regex, `<span class="hl">${this.value}</span>`);
+    const styles = place.hex;
+    console.log(styles);
+
+    return `
+      <li>
+        <span class="name" style= "color:${styles}">${cityName},</span>
+
+      </li>
+    `;
+  }).join('');
+  suggestions.innerHTML = html;
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
+
+}
