@@ -59,9 +59,9 @@ window.onload = function() {
     searchInput.addEventListener('change', displayMatches);
     searchInput.addEventListener('keyup', displayMatches);
 
-    searchInput.addEventListener('blur', function(e){
+    searchInput.addEventListener('blur', function(e) {
         console.log('clear');
-        if(searchInput.value == ''){
+        if (searchInput.value == '') {
             suggestions.innerHTML = '';
         }
 
