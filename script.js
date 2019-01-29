@@ -66,6 +66,13 @@ window.onload = function() {
         }
 
     });
+    // searchInput.addEventListener('focus', function(e) {
+    //     console.log('clear');
+    //     if (searchInput.value == '') {
+    //         suggestions.innerHTML = '';
+    //     }
+    //
+    // });
 
     /* do an on blur function */
 
