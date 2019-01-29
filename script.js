@@ -1,13 +1,12 @@
 window.onload = function() {
     /*use display mtaches from javascript lessons  */
 
-    //
+
     const cities = [];
 
     fetch("./data.JSON")
         .then(res => res.json())
         .then(colors => cities.push(...colors));
-
 
 
     function findMatches(wordToMatch, cities) {
@@ -24,12 +23,12 @@ window.onload = function() {
 
     function displayMatches() {
         const matchArray = findMatches(this.value, cities);
-        const html = matchArray.map(place => {
+        const html = matchArray.slice(0, 15).map(place => {
             const regex = new RegExp(this.value, 'gi');
             const cityName = place.color.replace(regex, `<span class="hl">${this.value}</span>`);
             const styles = place.hex;
 
-            console.log(styles);
+
 
             return `
       <li>
@@ -39,12 +38,29 @@ window.onload = function() {
     `;
         }).join('');
         suggestions.innerHTML = html;
+
     }
+
+    // function clear(){
+    //     if (searchInput == ''){
+    //         console.log('clear');
+    //     suggestions.innerHTML = 'blur';
+    // }
+    // }
 
     const searchInput = document.querySelector('.search');
     const suggestions = document.querySelector('.suggestions');
 
     searchInput.addEventListener('change', displayMatches);
     searchInput.addEventListener('keyup', displayMatches);
+    searchInput.addEventListener('blur', function(e){
+        console.log('clear');
+        if(searchInput.value == ''){
+            suggestions.innerHTML = '';
+        }
+
+    });
+
+    /* do an on blur function */
 
 }
