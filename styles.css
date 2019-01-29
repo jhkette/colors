@@ -1,6 +1,9 @@
 html{
     font-size: 62.5%;
 }
+p{
+    font-size: 1.8rem;
+}
 body{
     font-family: 'Roboto';
 }
@@ -30,4 +33,5 @@ form{
     flex-direction: row;
     width: 40rem;
     justify-content: space-between;
+    align-items:  center;
 }

@@ -9,8 +9,8 @@ window.onload = function() {
         .then(colors => cities.push(...colors));
 
 
-    function findMatches(wordToMatch, cities) {
-        return cities.filter(place => {
+    function findMatches(wordToMatch, colours) {
+        return colours.filter(place => {
             // here we need to figure out if the city or state matches what was searched
             const regex = new RegExp(wordToMatch, 'gi');
             return place.color.match(regex)
