@@ -2,18 +2,18 @@ window.onload = function() {
     /*use display mtaches from javascript lessons  */
 
 
-    const cities = [];
+    const allColours = [];
 
     fetch("./data.JSON")
         .then(res => res.json())
-        .then(colors => cities.push(...colors));
+        .then(colors => allColours.push(...colors));
 
 
-    function findMatches(wordToMatch, colours) {
-        return colours.filter(place => {
+    function findMatches(wordToMatch, allColours) {
+        return allColours.filter(index => {
             // here we need to figure out if the city or state matches what was searched
             const regex = new RegExp(wordToMatch, 'gi');
-            return place.color.match(regex)
+            return index.color.match(regex)
         });
     }
 
@@ -22,10 +22,10 @@ window.onload = function() {
     }
 
     function displayMatches() {
-        const matchArray = findMatches(this.value, cities);
+        const matchArray = findMatches(this.value, allColours);
         const html = matchArray.slice(0, 15).map(place => {
             const regex = new RegExp(this.value, 'gi');
-            const cityName = place.color.replace(regex, `<span class="hl">${this.value}</span>`);
+            const name = place.color.replace(regex, `<span class="hl">${this.value}</span>`);
             const styles = place.hex;
 
 
@@ -33,7 +33,7 @@ window.onload = function() {
             return `
             <div class = "flex">
       <li>
-        <span class="name" style= "color:${styles}">${cityName}: ${styles},</span>
+        <span class="name" style= "color:${styles}">${name}: ${styles},</span>
 
 
 
@@ -66,13 +66,7 @@ window.onload = function() {
         }
 
     });
-    // searchInput.addEventListener('focus', function(e) {
-    //     console.log('clear');
-    //     if (searchInput.value == '') {
-    //         suggestions.innerHTML = '';
-    //     }
-    //
-    // });
+
 
     /* do an on blur function */
 
