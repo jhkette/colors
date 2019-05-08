@@ -1,7 +1,5 @@
-window.onload = function() {
+window.onload = function () {
     /*use display mtaches from javascript lessons  */
-
-
     const allColours = [];
 
     fetch("./data.JSON")
@@ -17,16 +15,14 @@ window.onload = function() {
         });
     }
 
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
+
 
     function displayMatches() {
         const matchArray = findMatches(this.value, allColours);
-        const html = matchArray.slice(0, 15).map(place => {
+        const html = matchArray.slice(0, 15).map(match => {
             const regex = new RegExp(this.value, 'gi');
-            const name = place.color.replace(regex, `<span class="hl">${this.value}</span>`);
-            const styles = place.hex;
+            const name = match.color.replace(regex, `<span class="hl">${this.value}</span>`);
+            const styles = match.hex;
 
 
 
@@ -59,7 +55,7 @@ window.onload = function() {
     searchInput.addEventListener('change', displayMatches);
     searchInput.addEventListener('keyup', displayMatches);
 
-    searchInput.addEventListener('blur', function(e) {
+    searchInput.addEventListener('blur', function (e) {
         console.log('clear');
         if (searchInput.value == '') {
             suggestions.innerHTML = '';
